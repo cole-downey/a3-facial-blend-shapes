@@ -1,0 +1,14 @@
+Cole Downey
+The input data was downloaded from facewaretech.com.
+Completed everything
+
+Notes:
+I couldn't figure out to implement a dynamic amount of blendshapes in the gpu, so I coded in support for 2 blendshapes in the shader.
+    However, less than 2 blendshapes works with my shader
+When creating the blendshapes in maya, I decided to create one with just the mouth moving, and the second with the mouth, eyebrows, eyes, and neck moving
+    for the animation loop, I went from the bind position, to the first blendshape, to the second, and back to the first, with 2 sec on each segment
+
+Incompatible Blendshapes:
+The animation doesn't look good because you are trying to move the same set of vertices multiple times at 100% weight, so they move more than 100% total from the bind position.
+If you have nonconflicting blendshapes, you can set both to 100% weight, because not all of the vertices will be moving on a given blendshape, so no vertices will be moved more than 100%.
+By "moving more than 100%" I mean that vertices are moving farther away from bind than the blendshapes intend, for example if you add the same blendshape at 100% twice, the verts will be moved twice as far as the blendshape intended.
